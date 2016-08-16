@@ -1,6 +1,7 @@
-var bemLoader = require.resolve('../webpack/bem-loader');
+const path = require('path'),
+    bemLoader = require.resolve('../webpack/bem-loader');
 
-var jsLoaders = [bemLoader, 'babel'];
+const jsLoaders = [bemLoader, 'babel'];
 
 module.exports = {
     entry : `${__dirname}/desktop.bundles/index/index.js`,
@@ -20,6 +21,14 @@ module.exports = {
                 test : /\.css$/,
                 loaders : ['style', 'css']
             }
+        ]
+    },
+    resolve : {
+        alias : {
+            'bem-react-core' : require.resolve('../')
+        },
+        modules : [
+            path.resolve(__dirname, '../node_modules')
         ]
     },
     bemLoader : {
